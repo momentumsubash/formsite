@@ -6,62 +6,51 @@
 	   if (isset($_POST['submit'])) 
 	{
 						
+				// print_r($_POST);
+				// exit();
+				if(!empty($_POST['check_list'])){
+
+					$item = array();
+				// Loop to store and display values of individual checked checkbox.
+					foreach($_POST['check_list'] as $selected){
+
+							if ($selected=='apple') {
+								$item[] = array('name'=>$selected,'price'=>$_POST['value1']);
+
+							}
+
+							if ($selected=='banana') {
+								$item[] = array('name'=>$selected,'price'=>$_POST['value2']);
+							}
+
+							if ($selected=='mango') {
+								$item[] = array('name'=>$selected,'price'=>$_POST['value3']);
+							}
+					// echo $selected;
+
+					
+						$_SESSION['cart'] = array();
+						// echo $selected."<br>";
+						$_SESSION['cart'] = $item;
+						
+
+						 
+
+					}
+				// print_r($item);
 				
 				
-				$products= array($_POST['apple'],$_POST['banana'],)
-				$prices= array($_POST['value1'],$_POST['value2'],)
-
-				
-				foreach ($products as $value) {
-				    
-
-				    
-
-						    $_SESSION['cart'] = array();
-							$_SESSION['cart'][] = $products;
-
-							$_SESSION['price'] = array();
-							$_SESSION['price'][] = $prices;
-
-				    }
-				    
-
-
-				 
-				    
-				}
-		
-
-		// $check=array(	'apple' => $_POST['apple'], 
-		// 		'price' => $_POST['value1']
-		// 	);
-		// $apple=$check['apple'];
-		// $price1=$check['price'];
-
-		
-		// $_SESSION['cart'] = array();
-		// $_SESSION['cart'][] = $apple;
-
-		// $_SESSION['price'] = array();
-		// $_SESSION['price'][] = $price1;
-
-		
-
-
-		// $_SESSION['cart'][] = $_POST['banana'];
-		// $_SESSION['cart'][] = $_POST['orange'];
-		// $_SESSION['price'] = array();
-		
-
-		
-
-
-		
-
-		echo '<script>alert("Product added")
+				echo '<script>alert("Product added")
 	     	window.location.href = "payment.php";
-	     	</script>'; 
-	}
+	     	</script>';			
+				
+				   
+		
+		
+
+				
+				
+}}
 
  		
 	 
