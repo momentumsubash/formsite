@@ -37,7 +37,7 @@ if (isset($_GET['Message'])) {
     <div class="container">
 
     <h1 align="center">Form Page</h1>
-  <form name="sentMessage" id="contactForm"  action="check.php" method="post">
+  <form name="sentMessage" id="contactForm"   action="check.php" method="post">
                     <div class="control-group form-group">
                         <div class="controls">
                             <label>Full Name:</label>

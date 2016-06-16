@@ -44,13 +44,20 @@
 	     	window.location.href = "payment.php";
 	     	</script>';			
 				
-				   
+	}		   
+	else{
+
+		echo" select at list one check box";
+		$link = "product.php"; // Link goes here!
+		echo '.<br><a href="'.$link.'">Go Back</a>';
 		
+
+	}	
 		
 
 				
 				
-}}
+}
 
  		
 	 
