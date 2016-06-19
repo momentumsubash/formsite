@@ -1,7 +1,7 @@
 <?php
 
-namespace Mobile;
-use Device;
+namespace Mobile\Domain;
+use Domain\Device;
 use Id;
 use Name;
 use Company;
@@ -10,25 +10,22 @@ use Cdma;
 use OperatingSystem;
 
 
-/**
-* 
-*/
 class SmartPhone extends Device
 {	
 
 	private $device;
 	
-	function __construct( Mobile\Device $device)
+	function __construct( Mobile\Domain\Device $device)
 	{
 		$this->device = $device;
 	}
 	
-	public function detail(){
+	public function detail($device,$array){
 
 		
 		$device_id= new Id();
 		$processor = new Processor();
-		$memory= new Memory();
+		$memory= $device->get_memory();
 		$body= new Body();
 		$screen= $device->get_screen();
 		$battery= $device->get_battery();
@@ -37,6 +34,7 @@ class SmartPhone extends Device
 		$gsm= new Gsm('Ntc');
 		$os= new OperatingSystem('6.0');
 		$new_smartphone = array('device_id' => $device_id,
+								'type' 	=> 'smartphone',
 								'screen' => $screen,
 								'battery' => $battery,
 								'name' => $name,
@@ -51,4 +49,15 @@ class SmartPhone extends Device
 		return $new_smartphone;
 
 	}
+
+	public function edit_specification($specification){
+
+				if ($specification==Null) {
+					$this->detail($device);
+				}
+				else
+
+					return $specification;
+				
+			}
 }
