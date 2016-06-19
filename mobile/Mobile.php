@@ -8,7 +8,8 @@ class Mobile
 {
    
     public function index()
-    {
+    {   
+        public $phone;
         protected $array = array(
                                 'status' =>'new',
                                 'type'  => 'smartphone',
@@ -27,10 +28,10 @@ class Mobile
 
 
             if($array['status']=='new'){
-                SmartPhone::detail($array);
+                $phone=SmartPhone::detail($array);
             }
             else
-                SmartPhone::edit_specification($array);
+                $phone=SmartPhone::edit_specification($array);
             
         }
 
@@ -38,26 +39,25 @@ class Mobile
 
 
             if($array['status']=='new'){
-                NonSmartPhone::detail($array);
+                $phone=NonSmartPhone::detail($array);
             }
             else
-                NonSmartPhone::edit_specification($array);
+                $phone=NonSmartPhone::edit_specification($array);
             
         }
         if($array['type']=='tablet'){
 
 
             if($array['status']=='new'){
-                Tablet::detail($array);
+                $phone=Tablet::detail($array);
             }
             else
-                Tablet::edit_specification($array);
+                $phone=Tablet::edit_specification($array);
             
         }
 
+        return $phone;
 
-
-        
     }
 
 }
