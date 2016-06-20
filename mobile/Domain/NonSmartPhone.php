@@ -15,13 +15,19 @@ class NonSmartPhone extends Device
 {	
 
 	private $device;
+	private $manufacture;
+	private $service;
 	
-	function __construct( Mobile\Domain\Device $device)
+	function __construct( Mobile\Domain\Device $device, 
+						Interface\iManufacture $manufacture,
+						Mobile\Service\ServiceProvider $service)
 	{
 		$this->device = $device;
+		$this->manufacture = $manufacture;
+		$this->service = $service;
 	}
 	
-	public function detail($device,$array){
+	public function detail($array){
 
 		
 		$device_id= new Id();
@@ -45,7 +51,9 @@ class NonSmartPhone extends Device
 								'bddy' => $body,
 		 );
 
-		return $new_smartphone;
+
+		$output = $this->manufacture->build($new_smartphone);
+		return $output;
 
 	}
 	//first load edit_specification

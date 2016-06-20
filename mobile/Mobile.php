@@ -7,6 +7,17 @@ Use Domain\Tablet;
 class Mobile
 {
    
+   function __construct( 
+                            Mobile\Domain\SmartPhone $smart_phone,
+                            Mobile\Domain\NonSmartPhone $non_smart_phone,
+                            Mobile\Domain\Tablet $tablet
+                        )
+    {
+        
+        $this->smart_phone = $smart_phone;
+        $this->non_smart_phone = $non_smart_phone;
+        $this->tablet = $tablet;
+    }
     public function index()
     {   
         public $phone;
@@ -28,10 +39,10 @@ class Mobile
 
 
             if($array['status']=='new'){
-                $phone=SmartPhone::detail($array);
+                $phone=$this->smart_phone->detail($array);
             }
             else
-                $phone=SmartPhone::edit_specification($array);
+                $phone=$this->smart_phone->edit_specification($array);
             
         }
 
@@ -39,20 +50,20 @@ class Mobile
 
 
             if($array['status']=='new'){
-                $phone=NonSmartPhone::detail($array);
+                $phone=$this->non_smart_phone->detail($array);
             }
             else
-                $phone=NonSmartPhone::edit_specification($array);
+                $phone=$this->non_smart_phone->edit_specification($array);
             
         }
         if($array['type']=='tablet'){
 
 
             if($array['status']=='new'){
-                $phone=Tablet::detail($array);
+                $phone=$this->tablet->detail($array);
             }
             else
-                $phone=Tablet::edit_specification($array);
+                $phone=$this->tablet->edit_specification($array);
             
         }
 

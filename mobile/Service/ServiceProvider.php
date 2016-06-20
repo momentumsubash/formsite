@@ -7,6 +7,10 @@ namespace Mobile\Service;
 */
 class ServiceProvider 
 {
+	protected $device;
+	protected $smart_phone;
+	protected $non_smart_phone;
+	protected $tablet;
 	
 	function __construct( 
 							Mobile\Device $device, 
@@ -38,10 +42,13 @@ class ServiceProvider
 	private static change_screen($specification){
 		//change the existing screen size,
 		$device->screen=$specification['screen'];
+		 return $device;
+
 	}
 	private static change_memory($specification){
 		//change the existing screen size,
 		$device->screen=$specification['screen'];
+		return $device;
 	}
 
 

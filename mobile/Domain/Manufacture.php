@@ -16,6 +16,11 @@ use Interface\iManufacture;
 */
 class Manufacture implements iManufacture
 {	
+
+	protected $smart_phone;
+	protected $non_smart_phone;
+	protected $tablet;
+
 	function __construct( 
 							Mobile\Domain\Device $device, 
 							Mobile\Domain\SmartPhone $smart_phone,

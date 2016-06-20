@@ -3,11 +3,11 @@
 namespace Mobile\Domain;
 
 
-abstract class Device{
+class Device{
 	
-	public $battery;
-	public $screen;
-	public $memory;
+	protected $battery;
+	protected $screen;
+	protected $memory;
 
 	public function get_battery(){
 		return $this->battery;

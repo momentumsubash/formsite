@@ -1,6 +1,7 @@
 <?php
 
 namespace Mobile\Domain;
+
 use Domain\Device;
 use Id;
 use Name;
@@ -13,13 +14,19 @@ class Tablet extends Device
 {	
 
 	private $device;
+	private $manufacture;
+	private $service;
 	
-	function __construct( Mobile\Domain\Device $device)
+	function __construct( Mobile\Domain\Device $device, 
+						Interface\iManufacture $manufacture,
+						Mobile\Service\ServiceProvider $service)
 	{
 		$this->device = $device;
+		$this->manufacture = $manufacture;
+		$this->service = $service;
 	}
 	
-	public function detail($device,$array){
+	public function detail($array){
 
 		
 		$device_id= new Id();
@@ -42,8 +49,8 @@ class Tablet extends Device
 								'memory' => $memory,
 								'bddy' => $body,
 		 );
-
-		return $new_smartphone;
+		$output = $this->manufacture->build($new_smartphone);
+		return $output;
 
 	}
 }

@@ -8,19 +8,27 @@ use Company;
 use GSM;
 use Cdma;
 use OperatingSystem;
+use Interface\iManufacture;
+use  Mobile\Service\ServiceProvider;
 
 
 class SmartPhone extends Device
 {	
 
 	private $device;
+	private $manufacture;
+	private $service;
 	
-	function __construct( Mobile\Domain\Device $device)
+	function __construct( Mobile\Domain\Device $device, 
+						Interface\iManufacture $manufacture,
+						Mobile\Service\ServiceProvider $service;)
 	{
 		$this->device = $device;
+		$this->manufacture = $manufacture;
+		$this->service = $service;
 	}
 	
-	public function detail($device,$array){
+	public function detail($array){
 
 		
 		$device_id= new Id();
@@ -46,18 +54,21 @@ class SmartPhone extends Device
 								'bddy' => $body,
 		 );
 
-		return $new_smartphone;
+
+		$output = $this->manufacture->build($new_smartphone);
+		return $output;
 
 	}
 
-	public function edit_specification($specification){
+	public function edit_specification($array){
 
-				if ($specification==Null) {
-					$this->detail($device);
+				if ($array==Null) {
+					$this->detail($array);
 				}
 				else
 
-					return $specification;
+					$output = $this->service->fix($array);
+					return $output;
 				
 			}
 }
