@@ -1,6 +1,6 @@
 <?php
 
-use Device;
+use Domain/Device;
 
 class DeviceTest extends PHPUnit_Framework_TestCase{
 

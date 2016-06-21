@@ -23,16 +23,22 @@ class Mobile
         public $phone;
         protected $array = array(
                                 'status' =>'new',
+                                'type'  => 'smartphone'
+                                // 'screen' => '7*4inch',
+                                // 'battery' => '3500mah',
+                                // 'name' => 'galaxy',
+                                // 'company' => 'samsung',
+                                // 'mode' => 'gsm',
+                                // 'os' => '6.0',
+                                // 'processor' => 'quad core 1.7gz',
+                                // 'memory' => '16gb',
+                                // 'body' => 'rigid',
+            );
+        protected $old_array = array(
+                                'status' =>'old',
                                 'type'  => 'smartphone',
-                                'screen' => '7*4inch',
-                                'battery' => '3500mah',
-                                'name' => 'galaxy',
-                                'company' => 'samsung',
-                                'mode' => 'gsm',
-                                'os' => '6.0',
-                                'processor' => 'quad core 1.7gz',
-                                'memory' => '16gb',
-                                'body' => 'rigid',
+                                'change' => 'screen'
+                                
             );
 
         if($array['type']=='smartphone'){
@@ -42,7 +48,7 @@ class Mobile
                 $phone=$this->smart_phone->detail($array);
             }
             else
-                $phone=$this->smart_phone->edit_specification($array);
+                $phone=$this->smart_phone->edit_specification($old_array);
             
         }
 
@@ -53,7 +59,7 @@ class Mobile
                 $phone=$this->non_smart_phone->detail($array);
             }
             else
-                $phone=$this->non_smart_phone->edit_specification($array);
+                $phone=$this->non_smart_phone->edit_specification($old_array);
             
         }
         if($array['type']=='tablet'){
@@ -63,7 +69,7 @@ class Mobile
                 $phone=$this->tablet->detail($array);
             }
             else
-                $phone=$this->tablet->edit_specification($array);
+                $phone=$this->tablet->edit_specification($old_array);
             
         }
 

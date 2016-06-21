@@ -14,33 +14,29 @@ use OperatingSystem;
 class NonSmartPhone extends Device
 {	
 
-	private $device;
 	private $manufacture;
 	private $service;
 	
-	function __construct( Mobile\Domain\Device $device, 
-						Interface\iManufacture $manufacture,
+	function __construct(Interface\iManufacture $manufacture,
 						Mobile\Service\ServiceProvider $service)
 	{
-		$this->device = $device;
 		$this->manufacture = $manufacture;
 		$this->service = $service;
 	}
 	
 	public function detail($array){
-
 		
 		$device_id= new Id();
 		$processor = new Processor();
-		$memory= $device->get_memory();
+		$memory= $this->get_memory();
 		$body= new Body();
-		$screen= $device->get_screen();
-		$battery= $device->get_battery();
+		$screen= $this->get_screen();
+		$battery= $this->get_battery();
 		$name= new Name('tablet');
 		$company = new Company('lava');
 		$os= new OperatingSystem('6.0');
 		$new_smartphone = array('device_id' => $device_id,
-								'type' 	=> 'nonsmartphone',
+								'type' 	=> $array['type'],
 								'screen' => $screen,
 								'battery' => $battery,
 								'name' => $name,
@@ -57,14 +53,15 @@ class NonSmartPhone extends Device
 
 	}
 	//first load edit_specification
-			public function edit_specification($specification){
+			public function edit_specification($array){
 
-				if ($specification==Null) {
+				if ($array==Null) {
 					$this->detail($device);
 				}
 				else
 
-					return $specification;
+					$output = $this->service->fix($array);
+					return $output;
 				
 			}
 		

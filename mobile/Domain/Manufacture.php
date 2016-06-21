@@ -22,13 +22,13 @@ class Manufacture implements iManufacture
 	protected $tablet;
 
 	function __construct( 
-							Mobile\Domain\Device $device, 
+							// Mobile\Domain\Device $device, 
 							Mobile\Domain\SmartPhone $smart_phone,
 							Mobile\Domain\NonSmartPhone $non_smart_phone,
 							Mobile\Domain\Tablet $tablet
 						)
 	{
-		$this->device = $device;
+		// $this->device = $device;
 		$this->SmartPhone = $smart_phone;
 		$this->SmartPhone = $non_smart_phone;
 		$this->SmartPhone = $tablet;
@@ -63,7 +63,7 @@ class Manufacture implements iManufacture
 
 	private static function assemble($raw_phone){
 		//assembling all the information and storing in db
-
+		return $raw_phone;
 
 	}
 

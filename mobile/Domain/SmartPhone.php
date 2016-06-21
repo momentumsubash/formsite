@@ -19,11 +19,11 @@ class SmartPhone extends Device
 	private $manufacture;
 	private $service;
 	
-	function __construct( Mobile\Domain\Device $device, 
+	function __construct( //Mobile\Domain\Device $device,// Since smartphone is already extending device 
 						Interface\iManufacture $manufacture,
 						Mobile\Service\ServiceProvider $service;)
 	{
-		$this->device = $device;
+		// $this->device = $device;
 		$this->manufacture = $manufacture;
 		$this->service = $service;
 	}
@@ -33,16 +33,16 @@ class SmartPhone extends Device
 		
 		$device_id= new Id();
 		$processor = new Processor();
-		$memory= $device->get_memory();
+		$memory= $this->get_memory();
 		$body= new Body();
-		$screen= $device->get_screen();
-		$battery= $device->get_battery();
+		$screen= $this->get_screen();
+		$battery= $this->get_battery();
 		$name= new Name('Galaxy');
 		$company = new Company('Samsung');
 		$gsm= new Gsm('Ntc');
 		$os= new OperatingSystem('6.0');
 		$new_smartphone = array('device_id' => $device_id,
-								'type' 	=> 'smartphone',
+								'type' 	=> $array['type'],
 								'screen' => $screen,
 								'battery' => $battery,
 								'name' => $name,
@@ -66,6 +66,7 @@ class SmartPhone extends Device
 					$this->detail($array);
 				}
 				else
+
 
 					$output = $this->service->fix($array);
 					return $output;

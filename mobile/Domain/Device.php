@@ -9,27 +9,27 @@ class Device{
 	protected $screen;
 	protected $memory;
 
-	public function get_battery(){
+	protected function get_battery(){
 		return $this->battery;
 	}
 
-	public function get_screen(){
+	protected function get_screen(){
 		return $this->screen;
 	}
 
-	public function get_memory(){
+	protected function get_memory(){
 		return $this->memory;
 	}
 	
-	public function set_battery($value){
+	protected function set_battery($value){
 		$this->battery=$value;
 	}
 
-	public function set_screen($value){
+	protected function set_screen($value){
 		$this->screen=$value;
 	}
 
-	public function set_memory($value){
+	protected function set_memory($value){
 		$this->memory=$value;
 	}
 

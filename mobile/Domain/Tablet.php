@@ -17,11 +17,9 @@ class Tablet extends Device
 	private $manufacture;
 	private $service;
 	
-	function __construct( Mobile\Domain\Device $device, 
-						Interface\iManufacture $manufacture,
+	function __construct(Interface\iManufacture $manufacture,
 						Mobile\Service\ServiceProvider $service)
 	{
-		$this->device = $device;
 		$this->manufacture = $manufacture;
 		$this->service = $service;
 	}
@@ -31,10 +29,10 @@ class Tablet extends Device
 		
 		$device_id= new Id();
 		$processor = new Processor();
-		$memory= $device->get_memory();
+		$memory= $this->get_memory();
 		$body= new Body();
-		$screen= $device->get_screen();
-		$battery= $device->get_battery();
+		$screen= $this->get_screen();
+		$battery= $this->get_battery();
 		$name= new Name('ipad');
 		$company = new Company('iphone');
 		$os= new OperatingSystem('OSX');
