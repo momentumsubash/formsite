@@ -13,42 +13,69 @@ use OperatingSystem;
 class Tablet extends Device
 {	
 
-	private $device;
-	private $manufacture;
-	private $service;
+	private $name;
+	private $os;
+	private $processor;
+	private $body;
 	
-	function __construct(Interface\iManufacture $manufacture,
-						Mobile\Service\ServiceProvider $service)
+	function __construct( 
+						)
 	{
-		$this->manufacture = $manufacture;
-		$this->service = $service;
+		
+		
+	}
+
+	public function set_name(Name $name) {
+		$this->name = $name;
+	}
+
+	public function set_os(OS $os) {
+		$this->os = $os;
+	}
+
+	public function set_processor(Processor $processor) {
+		$this->processor = $processor;
+	}
+
+	public function set_memory(memory $memory) {
+		$this->memory = $memory;
+	}
+
+	public function set_body(Body $body) {
+		$this->body = $body;
 	}
 	
-	public function detail($array){
 
+
+	public function create($array){
+
+		$raw_phone = array('device_id' => $array['device_id'] ,
+							'name' => $array['name'],
+							'mode' => $$array['mode'],
+							'os' => $array['os'],
+							'processor' => $array['processor'],
+							'memory' => $array['memory'],
+							'body' => $array['device_id'],	
+							 );
+
+		$phone= self::assemble($raw_phone)
+
+		return $phone;
+
+
+	}
+
+	private static function assemble($raw_phone){
+		//assembling all the information 
+		$tablet = new Tablet();
+		$tablet->set_name($raw_phone['name']);
+		$tablet->set_os($raw_phone['os']);
+		$tablet->set_processor($raw_phone['processor']);
+		$tablet->set_memory($raw_phone['memory']);
+		$tablet->set_body($raw_phone['body']);
 		
-		$device_id= new Id();
-		$processor = new Processor();
-		$memory= $this->get_memory();
-		$body= new Body();
-		$screen= $this->get_screen();
-		$battery= $this->get_battery();
-		$name= new Name('ipad');
-		$company = new Company('iphone');
-		$os= new OperatingSystem('OSX');
-		$new_smartphone = array('device_id' => $device_id,
-								'type' 	=> 'tablet',
-								'screen' => $screen,
-								'battery' => $battery,
-								'name' => $name,
-								'company' => $company,
-								'os' => $os,
-								'processor' => $processor,
-								'memory' => $memory,
-								'bddy' => $body,
-		 );
-		$output = $this->manufacture->build($new_smartphone);
-		return $output;
+
+		return $tablet;
 
 	}
 }

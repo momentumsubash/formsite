@@ -14,55 +14,71 @@ use OperatingSystem;
 class NonSmartPhone extends Device
 {	
 
-	private $manufacture;
-	private $service;
+	private $name;
+	private $os;
+	private $processor;
+	private $body;
 	
-	function __construct(Interface\iManufacture $manufacture,
-						Mobile\Service\ServiceProvider $service)
+	function __construct( 
+						)
 	{
-		$this->manufacture = $manufacture;
-		$this->service = $service;
+		
+		
+	}
+
+	public function set_name(Name $name) {
+		$this->name = $name;
+	}
+
+	public function set_os(OS $os) {
+		$this->os = $os;
+	}
+
+	public function set_processor(Processor $processor) {
+		$this->processor = $processor;
+	}
+
+	public function set_memory(memory $memory) {
+		$this->memory = $memory;
+	}
+
+	public function set_body(Body $body) {
+		$this->body = $body;
 	}
 	
-	public function detail($array){
-		
-		$device_id= new Id();
-		$processor = new Processor();
-		$memory= $this->get_memory();
-		$body= new Body();
-		$screen= $this->get_screen();
-		$battery= $this->get_battery();
-		$name= new Name('tablet');
-		$company = new Company('lava');
-		$os= new OperatingSystem('6.0');
-		$new_smartphone = array('device_id' => $device_id,
-								'type' 	=> $array['type'],
-								'screen' => $screen,
-								'battery' => $battery,
-								'name' => $name,
-								'company' => $company,
-								'os' => $os,
-								'processor' => $processor,
-								'memory' => $memory,
-								'bddy' => $body,
-		 );
 
 
-		$output = $this->manufacture->build($new_smartphone);
-		return $output;
+	public function create($array){
+
+		$raw_phone = array('device_id' => $array['device_id'] ,
+							'name' => $array['name'],
+							'mode' => $$array['mode'],
+							'os' => $array['os'],
+							'processor' => $array['processor'],
+							'memory' => $array['memory'],
+							'body' => $array['device_id'],	
+							 );
+
+		$phone= self::assemble($raw_phone)
+
+		return $phone;
+
 
 	}
-	//first load edit_specification
-			public function edit_specification($array){
 
-				if ($array==Null) {
-					$this->detail($device);
-				}
-				else
+	private static function assemble($raw_phone){
+		//assembling all the information 
+		$non_mart_phone = new NonSmartPhone();
 
-					$output = $this->service->fix($array);
-					return $output;
-				
-			}
+		$non_mart_phone->set_name($raw_phone['name']);
+		$non_mart_phone->set_os($raw_phone['os']);
+		$non_mart_phone->set_processor($raw_phone['processor']);
+		$non_mart_phone->set_memory($raw_phone['memory']);
+		$non_mart_phone->set_body($raw_phone['body']);
+		
+
+		return $non_mart_phone;
+
+	}
 		
 }

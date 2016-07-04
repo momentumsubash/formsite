@@ -5,6 +5,11 @@ namespace Mobile\Service;
 /**
 * 
 */
+use Domain\Device;
+use Domain\SmartPhone;
+use Domain\NonSmartPhone;
+use Domain\Tablet;
+
 class ServiceProvider 
 {
 	
@@ -14,113 +19,114 @@ class ServiceProvider
 	
 	function __construct( 
 							// Mobile\Device $device, 
-							Mobile\SmartPhone $smart_phone,
-							Mobile\NonSmartPhone $non_smart_phone,
-							Mobile\Tablet $tablet
+							// Mobile\SmartPhone $smart_phone,
+							// Mobile\NonSmartPhone $non_smart_phone,
+							// Mobile\Tablet $tablet
 						)
 	{
 		// $this->device = $device;
-		$this->SmartPhone = $smart_phone;
-		$this->SmartPhone = $non_smart_phone;
-		$this->SmartPhone = $tablet;
+		// $this->SmartPhone = $smart_phone;
+		// $this->SmartPhone = $non_smart_phone;
+		// $this->SmartPhone = $tablet;
 	}
 
-	public function fix($specification){
-
-		
+	public function fix(Device $device){
 
 
-
-		if($specification['type']=='smartphone'){
+		if($device['type']=='smartphone'){
 
 		}
 
 
-		if ($specification['change']=='screen') {
+		if ($device['change']=='screen') {
 
-			$final_device= self::change_screen_smart_phone($specification);
+			$final_device= self::change_screen_smart_phone($device);
 			# code...
 		}
-		if ($specification['change']=='memory') {
+		if ($device['change']=='memory') {
 
-			$final_device= self::change_memory_smart_phone($specification);
+			$final_device= self::change_memory_smart_phone($device);
 			# code...
 		}
 		
 		}
 
-		if($specification['type']=='nonsmartphone'){
+		if($device['type']=='nonsmartphone'){
 
 		}
 
 
-		if ($specification['change']=='screen') {
+		if ($device['change']=='screen') {
 
-			$final_device= self::change_screen_non_smart_phone($specification);
+			$final_device= self::change_screen_non_smart_phone($device);
 			# code...
 		}
-		if ($specification['change']=='memory') {
+		if ($device['change']=='memory') {
 
-			$final_device= self::change_memory_non_smart_phone($specification);
+			$final_device= self::change_memory_non_smart_phone($device);
 			# code...
 		}
 		
 		}
 
 
-		if($specification['type']=='tablet'){
+		if($device['type']=='tablet'){
 
 		}
 
 
-		if ($specification['change']=='screen') {
+		if ($device['change']=='screen') {
 
-			$final_device= self::change_screen_tablet($specification);
+			$final_device= self::change_screen_tablet($device);
 			# code...
 		}
-		if ($specification['change']=='memory') {
+		if ($device['change']=='memory') {
 
-			$final_device= self::change_memory_tablet($specification);
+			$final_device= self::change_memory_tablet($device);
 			# code...
 		}
 		
 		}
 
 
-	private static change_screen_smart_phone($specification){
+	private static change_screen_smart_phone($device){
 		//change the existing screen size,
-		$this->screen=$specification['screen'];
-		 return $this;
+		$smartphone= new SmartPhone();
+		$smartphone->screen=$device['screen'];
+		 return $smartphone;
 
 	}
-	private static change_memory_smart_phone($specification){
+	private static change_memory_smart_phone($device){
 		//change the existing screen size,
-		$this->memory=$specification['memory'];
-		return $this;
+		$smartphone= new SmartPhone();
+		$smartphone->memory=$device['memory'];
+		return $smartphone;
 	}
-	private static change_screen_non_smart_phone($specification){
+	private static change_screen_non_smart_phone($device){
 		//change the existing screen size,
-		$this->screen=$specification['screen'];
-		 return $this;
+		$non_smartphone= new NonSmartPhone();
+		$non_smartphone->screen=$device['screen'];
+		 return $non_smartphone;
 
 	}
-	private static change_memory_non_smart_phone($specification){
+	private static change_memory_non_smart_phone($device){
 		//change the existing screen size,
-		$this->screen=$specification['screen'];
-		return $this;
+		$non_smartphone= new NonSmartPhone();
+		$non_smartphone->memory=$device['memory'];
+		return $non_smartphone;
 	}
-	private static change_screen_tablet($specification){
+	private static change_screen_tablet($device){
 		//change the existing screen size,
-		$this->screen=$specification['screen'];
-		 return $this;
+		$tablet= new Tablet();
+		$tablet->screen=$device['screen'];
+		 return $tablet;
 
 	}
-	private static change_memory_tablet($specification){
+	private static change_memory_tablet($device){
 		//change the existing screen size,
-		$this->screen=$specification['screen'];
-		return $this;
+		$tablet= new Tablet();
+		$tablet->screen=$device['screen'];
+		return $tablet;
 	}
-	return $this;
-
-
+	
 }

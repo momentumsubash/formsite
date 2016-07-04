@@ -29,41 +29,60 @@ class Manufacture implements iManufacture
 						)
 	{
 		// $this->device = $device;
-		$this->SmartPhone = $smart_phone;
-		$this->SmartPhone = $non_smart_phone;
-		$this->SmartPhone = $tablet;
+		$this->smart_phone = $smart_phone;
+		$this->non_smart_phone = $non_smart_phone;
+		$this->tablet = $tablet;
 	}
 
-	public function build($new_smartphone){
+	public function build($array){
+
+		$device_id= new Id();
+		$processor = new Processor();
+		$memory= $this->get_memory();
+		$body= new Body();
+		$screen= $this->get_screen();
+		$battery= $this->get_battery();
+		$name= new Name('Galaxy');
+		$company = new Company('Samsung');
+		$gsm= new Gsm('Ntc');
+		$os= new OperatingSystem('6.0');
+
+		//all this things comes from controller
+		
+		$new_smartphone = array('device_id' => $device_id,
+								'type' 	=> $array['type'],
+								'screen' => $screen,
+								'battery' => $battery,
+								'name' => $name,
+								'company' => $company,
+								'mode' => $gsm,
+								'os' => $os,
+								'processor' => $processor,
+								'memory' => $memory,
+								'bddy' => $body,
+		 );
 
 
 		if ($new_smartphone['type']=='smartphone') {
-			$raw_phone= $this->smart_phone->detail();
+			$final_product= $this->smart_phone->create($new_smartphone);
 			
 		}
 		elseif ($new_smartphone['type']=='nonsmartphone') {
 
-			$raw_phone= $this->non_smart_phone->detail();
+			$final_product= $this->non_smart_phone->create($new_smartphone);
 		}
 		else{
 
-			$raw_phone= $this->tablet->detail();
+			$final_product= $this->tablet->create($new_smartphone);
 		}
 		
 		//all the process of building phone with raw material , ie assembly
 
-		$phone_entities = self::assemble($raw_phone);
-		//other functianilities of building stuff//
-		return $phone_entities;
+		return $final_product;
 
 	}
 
 
 }
 
-	private static function assemble($raw_phone){
-		//assembling all the information and storing in db
-		return $raw_phone;
-
-	}
 
